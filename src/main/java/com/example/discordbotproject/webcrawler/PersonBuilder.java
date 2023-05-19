@@ -18,11 +18,12 @@ public class PersonBuilder {
 
     public Person buildPerson()
     {
+        String temporaryNick;
 
-        if(!document.select("table.guild-list:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > font:nth-child(1) > strong:nth-child(1)")
+        if(!document.select(PersonType.find(SelectorInfo.NICK))
                 .text().isEmpty())
         {
-            System.out.println("tak");
+            System.out.println(document.select(PersonType.find(SelectorInfo.NICK)).text());
         }
 
         return Person.builder().nick("test").level(10).build();
