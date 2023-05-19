@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,9 +22,8 @@ import java.util.Set;
 @SpringBootApplication
 public class DiscordBotProjectApplication implements CommandLineRunner {
 
-    private final String TOKEN = "MTEwODU0MTU3NzQwMTQ3NTExMg.GGdGeK.svToPTv8HgT5rUF-ccxEdEOIy1IPc6S-yc6Ymw";
-
-
+    @Value("${myapp.token.key}")
+    private String TOKEN;
 
     public static void main(String[] args) {
         SpringApplication.run(DiscordBotProjectApplication.class, args);
@@ -37,6 +37,7 @@ public class DiscordBotProjectApplication implements CommandLineRunner {
                 .build();
 
 
+        System.out.println(TOKEN);
 
     }
 
