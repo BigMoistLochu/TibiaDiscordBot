@@ -18,15 +18,27 @@ public class PersonBuilder {
 
     public Person buildPerson()
     {
-        String temporaryNick;
+        String temporaryNick = "";
+        Integer temporaryLevel = 0;
 
         if(!document.select(PersonType.find(SelectorInfo.NICK))
                 .text().isEmpty())
         {
-            System.out.println(document.select(PersonType.find(SelectorInfo.NICK)).text());
+            temporaryNick = document.select(PersonType.find(SelectorInfo.NICK)).text();
         }
 
-        return Person.builder().nick("test").level(10).build();
+
+        if(!document.select(PersonType.find(SelectorInfo.LEVEL)).text().isEmpty())
+        {
+            temporaryLevel = Integer.parseInt(document.select(PersonType.find(SelectorInfo.LEVEL)).text());
+        }
+
+
+
+        return Person.builder()
+                .nick(temporaryNick)
+                .level(temporaryLevel)
+                .build();
     }
 
 

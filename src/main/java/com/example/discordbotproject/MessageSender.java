@@ -6,11 +6,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class CommandFirst extends ListenerAdapter {
+public class MessageSender extends ListenerAdapter {
 
 
     private final String URL = "https://discord.com/api/webhooks/1108811425553600593/WVNI2SCM9oORhVU5FaiAOozpNTQkahsetmwOreJDsO7-81W-2AraP7vbdNxoyeGT8Wx7";
@@ -22,7 +18,7 @@ public class CommandFirst extends ListenerAdapter {
 
             String message = event.getMessage().getContentRaw();
 
-            if(message.contains("kacper"))
+            if(message.contains("!build"))
             {
                 try
                 {
@@ -30,12 +26,16 @@ public class CommandFirst extends ListenerAdapter {
 
                     Person person = personBuilder.buildPerson();
 
+                    if(person.getNick()!= "" && person.getLevel()>0)
+                    {
+                        event.getChannel().sendMessage("Postac o nicku: "+ person.getNick() + " zostala stworzona").queue();
+                    }
 
-                    event.getTextChannel().sendMessage("Postac o nicku: "+ person.getNick() + "zostala stworzona").queue();
+
                 }
                 catch (Exception e)
                 {
-                    event.getTextChannel().sendMessage("Nie Udalo Sie stworzyc obiektu").queue();
+                    event.getChannel().sendMessage("Obiekt nie zostal stworzony").queue();
                 }
 
             }
