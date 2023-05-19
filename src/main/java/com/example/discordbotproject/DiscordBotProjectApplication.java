@@ -37,7 +37,7 @@ public class DiscordBotProjectApplication implements CommandLineRunner {
                 .build();
 
 
-        System.out.println(TOKEN);
+
 
     }
 
