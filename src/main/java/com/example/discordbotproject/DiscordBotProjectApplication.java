@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import static net.dv8tion.jda.api.Permission.MANAGE_WEBHOOKS;
+
 @SpringBootApplication
 public class DiscordBotProjectApplication implements CommandLineRunner {
 
@@ -19,10 +21,12 @@ public class DiscordBotProjectApplication implements CommandLineRunner {
 
     MessageSender messageSender;
 
+
     @Autowired
     public DiscordBotProjectApplication(MessageSender messageSender)
     {
         this.messageSender = messageSender;
+
     }
 
     public static void main(String[] args) {
@@ -34,8 +38,9 @@ public class DiscordBotProjectApplication implements CommandLineRunner {
 
         JDA jda = JDABuilder.createDefault(TOKEN)
                 .addEventListeners(messageSender)
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT,GatewayIntent.GUILD_WEBHOOKS)
                 .build();
+
 
     }
 

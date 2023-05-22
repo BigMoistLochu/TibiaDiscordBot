@@ -2,11 +2,15 @@ package com.example.discordbotproject;
 
 import com.example.discordbotproject.models.Person;
 import com.example.discordbotproject.webcrawler.PersonBuilder;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class MessageSender extends ListenerAdapter {
@@ -29,30 +33,51 @@ public class MessageSender extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
 
 
-            String message = event.getMessage().getContentRaw();
+            String message = event.getMessage().getEmbeds().get(0).getFields().get(0).getValue();
 
-            String[] listOfMessage = message.split(" ");
 
-            if(message.contains("!build"))
+
+
+            //chce zeby z tibi przyszly mi dane o postac i na podstawie tego chce stworzyc persona
+
+
+            if(event.isWebhookMessage())
             {
-                try
+
+                if(event.getAuthor().isBot())
                 {
 
-                    Person person = personBuilder.setUrl(listOfMessage[1]).buildPerson();
-
-                    if(person.getNick() != "" && person.getLevel()>0)
-                    {
-                        event.getChannel().sendMessage("Postac o nicku: "+ person.getNick() + " zostala stworzona").queue();
-                    }
-
-
-                }
-                catch (Exception e)
-                {
-                    event.getChannel().sendMessage("Obiekt nie zostal stworzony lub zle wpisales komende, przyklad: !build http//...").queue();
+                    event.getChannel().sendMessage(message).queue();
                 }
 
             }
+
+
+//                    if(event.isWebhookMessage())
+//                    {
+//                        event.getChannel().sendMessage("xd").queue();
+//                    }
+
+//            if(message.contains("!build"))
+//            {
+//                try
+//                {
+//
+//                    Person person = personBuilder.setUrl(listOfMessage[1]).buildPerson();
+//
+//                    if(person.getNick() != "" && person.getLevel()>0)
+//                    {
+//                        event.getChannel().sendMessage("Postac o nicku: "+ person.getNick() + " zostala stworzona uzytkownik wiadomosci: " + event.getAuthor().getName()).queue();
+//                    }
+//
+//
+//                }
+//                catch (Exception e)
+//                {
+//                    event.getChannel().sendMessage("Obiekt nie zostal stworzony lub zle wpisales komende, przyklad: !build http//...").queue();
+//                }
+//
+//            }
     }
 
 }
