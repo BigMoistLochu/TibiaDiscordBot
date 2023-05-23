@@ -3,6 +3,8 @@ package com.example.discordbotproject;
 import com.example.discordbotproject.models.Person;
 import com.example.discordbotproject.webcrawler.PersonBuilder;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -33,24 +35,21 @@ public class MessageSender extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
 
 
-            String message = event.getMessage().getEmbeds().get(0).getFields().get(0).getValue();
+//            List<MessageEmbed> message = event.getMessage().getEmbeds();
+
+            //mamy liste w ktorej jest obiekt w ktorej przechowywane sa nasze informacje
+            //Lista -> Obiekt -> getFields przechowuje nasze informacje
+            System.out.println("zwykly tekst");
+            //dobra ale co chcesz zrobic z tymi informacjami bo wyswietlic je zawsze mozesz
+            //musisz stworzyc klase ktora bedzie reprezentowac informacje ktore przyszly
+            //i teraz tak ta klasa MessageSender bedzie przyjmowac wszystkie informacje
+            //i czy chcesz tutaj robic mase ifow??
+            //bo co chcesz jeszcze wyciagac??
+            //niech jedna klasa reprezentuje to co chcesz wyciagnac
+            //teraz tak cche wyciagnac to co jest w getEmbeds
 
 
 
-
-            //chce zeby z tibi przyszly mi dane o postac i na podstawie tego chce stworzyc persona
-
-
-            if(event.isWebhookMessage())
-            {
-
-                if(event.getAuthor().isBot())
-                {
-
-                    event.getChannel().sendMessage(message).queue();
-                }
-
-            }
 
 
 //                    if(event.isWebhookMessage())
@@ -79,5 +78,6 @@ public class MessageSender extends ListenerAdapter {
 //
 //            }
     }
+
 
 }
