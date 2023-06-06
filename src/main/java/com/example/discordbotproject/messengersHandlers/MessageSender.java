@@ -1,5 +1,6 @@
-package com.example.discordbotproject;
+package com.example.discordbotproject.messengersHandlers;
 
+import com.example.discordbotproject.DiscordWebhook;
 import com.example.discordbotproject.models.Person;
 import com.example.discordbotproject.webcrawler.PersonBuilder;
 import net.dv8tion.jda.api.entities.Message;
@@ -34,28 +35,8 @@ public class MessageSender extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
 
-
-//            List<MessageEmbed> message = event.getMessage().getEmbeds();
-
-            //mamy liste w ktorej jest obiekt w ktorej przechowywane sa nasze informacje
-            //Lista -> Obiekt -> getFields przechowuje nasze informacje
-            System.out.println("zwykly tekst");
-            //dobra ale co chcesz zrobic z tymi informacjami bo wyswietlic je zawsze mozesz
-            //musisz stworzyc klase ktora bedzie reprezentowac informacje ktore przyszly
-            //i teraz tak ta klasa MessageSender bedzie przyjmowac wszystkie informacje
-            //i czy chcesz tutaj robic mase ifow??
-            //bo co chcesz jeszcze wyciagac??
-            //niech jedna klasa reprezentuje to co chcesz wyciagnac
-            //teraz tak cche wyciagnac to co jest w getEmbeds
-
-
-
-
-
-//                    if(event.isWebhookMessage())
-//                    {
-//                        event.getChannel().sendMessage("xd").queue();
-//                    }
+                //funkcja ktora lapie kazdy tekst
+                System.out.println("zwykly tekst");
 
 //            if(message.contains("!build"))
 //            {

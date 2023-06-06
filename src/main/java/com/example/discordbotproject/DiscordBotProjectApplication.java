@@ -1,5 +1,7 @@
 package com.example.discordbotproject;
 
+import com.example.discordbotproject.messengersHandlers.embedMessange.EmbedMessageHanndler;
+import com.example.discordbotproject.messengersHandlers.MessageSender;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
